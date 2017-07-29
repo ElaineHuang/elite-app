@@ -1,0 +1,7 @@
+---
+applications:
+- name: tic100-sample-app
+  random-route: true      # please do NOT remove this attribute
+  instances: 1            # default: 1
+  memory: 128M            # default: 2G
+  disk_quota: 512M        # default: 2G
