@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello World</title>
+    <title>Elite</title>
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -14,28 +14,50 @@
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Elite Group</a>
-            </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Elite Group</a>
+        </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Dashboard<span class="sr-only">(current)</span></a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Dashboard<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="form-background">
+        <div class="row">
+            <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
+                <div class="input-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" placeholder="Enter your name" name="name">
+                </div>
+                <div class="input-group">
+                  <label>Department</label>
+                  <input type="text" class="form-control" placeholder="Enter your department" name="department">
+                </div>
+                <hr class="dashed-hr">
+                <div class="btn-block">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <div class="col-md-8 slogan">
+                <h1>Help us impove our analysis!</h2>
+                <p>Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better!</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <div id="circle-donut" class="circle-donut"></div>
         <div id="line-chart" class="line-chart"></div>
     </div>
@@ -49,6 +71,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/antixss.js" type="text/javascript"></script>
     <script src="static/circle-donut.js" type="text/javascript"></script>
+    <script src="static/submit-form.js" type="text/javascript"></script>
 </body>
 
 </html>
