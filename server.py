@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-port = int(os.getenv('PORT', 8080))
+port = int(os.getenv('PORT', 3080))
 
 @app.route('/')
 def home():
