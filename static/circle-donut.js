@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    c3.generate({
+    const circleDonut = c3.generate({
         bindto: '#circle-donut',
         data: {
             // iris data from R
@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     setTimeout(function () {
-        chart.load({
+        circleDonut.load({
             columns: [
                 ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
                 ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
@@ -25,15 +25,15 @@ $(document).ready(function() {
     }, 1500);
 
     setTimeout(function () {
-        chart.unload({
+        circleDonut.unload({
             ids: 'data1'
         });
-        chart.unload({
+        circleDonut.unload({
             ids: 'data2'
         });
     }, 2500);
     
-    c3.generate({
+    const lineChart = c3.generate({
         bindto: '#line-chart',
         data: {
             columns: [
