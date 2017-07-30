@@ -62,3 +62,16 @@
 .btn-block button:hover {
   background: #44cbef;
 }
+
+.c3-region.normal {
+  fill: #ff9999;
+}
+
+.c3-region.high {
+  fill: #ff4d4d;
+}
+
+.c3-region.critical {
+  fill: #ff0000;
+}
+
