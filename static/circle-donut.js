@@ -1,45 +1,24 @@
 $(document).ready(function() {
-    const circleDonut = c3.generate({
-        bindto: '#circle-donut',
+    const recChart = c3.generate({
+        bindto: '#rec-chart',
         data: {
-            // iris data from R
+            x : 'x',
             columns: [
-                ['data1', 30],
-                ['data2', 120],
+                ['x', ' E530020', ' E530021', ' E530023', ' E530024', ' E530025', ' E530026'],
+                ['February', 30, 200, 100, 400, 150, 250],
             ],
-            type : 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); },
-            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-        }
-    });
-
-    setTimeout(function () {
-        circleDonut.load({
-            columns: [
-                ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
-                ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
-                ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8],
-            ]
-        });
-    }, 1500);
-
-    setTimeout(function () {
-        circleDonut.unload({
-            ids: 'data1'
-        });
-        circleDonut.unload({
-            ids: 'data2'
-        });
-    }, 2500);
-    
-    const lineChart = c3.generate({
-        bindto: '#line-chart',
-        data: {
-            columns: [
-                ['data1', 100, 200, 150, 300, 200],
-                ['data2', 400, 500, 250, 700, 300],
-            ]
+            types: {
+                February: 'bar',
+            }
+        },
+        axis: {
+            x: {
+                type: 'category',
+                tick: {
+                    multiline: false
+                }
+            },
+            rotated: true
         }
     });
 });
