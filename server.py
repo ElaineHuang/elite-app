@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import os
 import json
 from flask.ext.pymongo import PyMongo
-from models import TestCollection
+from models.models import TestCollection
 
 app = Flask(__name__)
 
