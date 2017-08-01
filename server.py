@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 port = int(os.getenv('PORT', 8000))
 db = models.init_db()
-
+models.import_error_code_csv(db)
 
 @app.route('/')
 def home():
@@ -40,7 +40,7 @@ def put_visitor():
 #         hr.update({'response': 'error'})
 #     return json.dumps(hr)
 
-@app.route('/api/get_error_code', methods=['POST'])
+@app.route('/api/get_error_code', methods=['GET'])
 def get_error_code():
     hr = {}
     try:
