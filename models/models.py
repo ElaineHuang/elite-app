@@ -1,29 +1,66 @@
 from flask import Flask
-from flask.ext.mongoalchemy import MongoAlchemy
+from pymongo import MongoClient, ASCENDING
+import csv
+import json
+import os
+import glob
+from bson.json_util import dumps
 
-app = Flask(__name__)
-
-
-def init_db_app(app):
+def init_db():
     # app.config['MONGOALCHEMY_DATABASE'] = 'eb8c4f80-3ec6-428d-a4df-ce2011778d7c'
     # app.config['MONGO_URI'] = 'mongodb://d933c021-d8d3-402b-aad2-bb67e8d40601:iEGGAujhUObOBJyFeakrOt3T3@192.168.100.12:27017/eb8c4f80-3ec6-428d-a4df-ce2011778d7c'
+    
+    #from nick method
+	# uri = "mongodb://d933c021-d8d3-402b-aad2-bb67e8d40601:iEGGAujhUObOBJyFeakrOt3T3@192.168.100.12:27017/eb8c4f80-3ec6-428d-a4df-ce2011778d7c"
+	# client = MongoClient(uri)
+	# db = client['eb8c4f80-3ec6-428d-a4df-ce2011778d7c']
 
     #localhost db for test
-    app.config['MONGOALCHEMY_DATABASE'] = 'tic100'
-    app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017'
-    db  = MongoAlchemy(app)  
+ 	uri = "mongodb://127.0.0.1:27017"
+	client = MongoClient(uri)
+	db = client['tic100']   
 
-    return db
+	#no useful
+    # app.config['MONGOALCHEMY_DATABASE'] = 'tic100'
+    # app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017'
+    # db  = MongoAlchemy(app)  
 
-db = init_db_app(app)
-
-class TestCollection(db.Document):
-    number = db.IntField()
-    name = db.StringField()
+	return db
 
 
-# class Book(db.Document):
-#     title = db.StringField()
-#     author = db.DocumentField(Author)
-#     year = db.IntField()
+def import_error_code_csv(db):
+
+
+	#table
+	count = 0
+	db.errorCodeTable.remove()
+	collect = db['errorCodeTable']
+	#CSV to JSON Conversion
+	header = ['Repetition', 'ErrCode', 'StartTime']
+	print (os.path.abspath(os.path.dirname(__file__)))
+	csv_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/')
+
+	for file in glob.glob(csv_path + '*_file.csv' ):
+		csvfile = open(file, 'r')
+		reader = csv.DictReader( csvfile )
+		print reader
+		row = {}
+		for each in reader:
+			for h in header:
+				row.update({
+					h: each[h]
+				})
+			row.update({
+				'_id': count
+			})				
+
+			db.errorCodeTable.insert(row)
+			count+=1
+
+	print ("done import errorCode")
+
+def get_db(db):
+	out_error_db = list(db.errorCodeTable.find())
+	return dumps(out_error_db)
+
 
