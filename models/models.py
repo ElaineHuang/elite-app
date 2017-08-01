@@ -33,7 +33,7 @@ def import_error_code_csv(db):
 
 	#table
 	count = 0
-	db.errorCodeTable.remove()
+	db.errorCodeTable.drop()
 	collect = db['errorCodeTable']
 	#CSV to JSON Conversion
 	header = ['Repetition', 'ErrCode', 'StartTime']
@@ -42,6 +42,7 @@ def import_error_code_csv(db):
 
 	for file in glob.glob(csv_path + '*_file.csv' ):
 		csvfile = open(file, 'r')
+		machine_no =  file.split('_')[1]
 		reader = csv.DictReader( csvfile )
 		print reader
 		row = {}
@@ -51,7 +52,8 @@ def import_error_code_csv(db):
 					h: each[h]
 				})
 			row.update({
-				'_id': count
+				'_id': count,
+				'Machine': machine_no,
 			})				
 
 			db.errorCodeTable.insert(row)
