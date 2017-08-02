@@ -17,7 +17,7 @@ const callApi = (url = '', method = 'GET', data = null, callback) => {
 
 callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
   data = JSON.parse(errorCode.data);
-  console.log(data);
+  
   M023 = data.filter((d) => d.Machine === 'M023');
   M024 = data.filter((d) => d.Machine === 'M024');
   M025 = data.filter((d) => d.Machine === 'M025');
