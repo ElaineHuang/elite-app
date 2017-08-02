@@ -53,10 +53,10 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
           ],
           type: 'bar',
           colors: {
-            M023: '#ff8080',
-            M024: '#ff6666',
-            M025: '#ff4d4d',
-            M026: '#ff3333',
+            M023: '#4dc3ff',
+            M024: '#0086b3',
+            M025: '#33cccc',
+            M026: '#248f8f',
           },
       },
       axis: {
