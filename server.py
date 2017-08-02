@@ -12,10 +12,6 @@ db = models.init_db()
 
 @app.route('/')
 def home():
-    # add_test = TestCollection(number=1, name='test')
-    # add_test.save()
-    # print ("---------------------",add_test.query.first())
-
     return render_template('index.html')
 
 @app.route('/api/visitors', methods=['POST'])
