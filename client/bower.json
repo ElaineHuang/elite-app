@@ -4,7 +4,8 @@
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.1",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "c3": "~0.4.15"
   },
   "overrides": {
     "bootstrap-sass": {
