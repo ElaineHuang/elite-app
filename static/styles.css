@@ -78,3 +78,9 @@
 .c3-region.critical {
   fill: #ff0000;
 }
+
+iframe {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
