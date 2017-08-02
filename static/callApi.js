@@ -53,10 +53,10 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
           ],
           type: 'bar',
           colors: {
-            M023: '#4dc3ff',
-            M024: '#0086b3',
-            M025: '#33cccc',
-            M026: '#248f8f',
+            M023: '#ffb3b3',
+            M024: '#ffe066',
+            M025: '#70dbdb',
+            M026: '#d9b3ff',
           },
       },
       axis: {
@@ -67,11 +67,6 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
               }
           },
           rotated: true
-      },
-      regions: [
-          { axis: 'y', start: 0, end: 10, class: 'normal' },
-          { axis: 'y', start: 10, end: 50, class: 'high' },
-          { axis: 'y', start: 50, end: 80, class: 'critical' },
-      ]
+      }
   });
 });
