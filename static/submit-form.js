@@ -1,9 +1,13 @@
+const SAVE_FORM = '/api/save_form';
+
 $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
   const formData = standardObject($(this).serializeArray());
   $(this)[0].reset();
 
-  console.log(formData)
+  callApi(SAVE_FORM, 'POST', formData, () => {
+    alert('We received your data, thanks!');
+  });
 });
 
 function standardObject(orginialArray) {
