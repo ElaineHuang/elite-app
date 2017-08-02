@@ -2,6 +2,8 @@ $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
   const formData = standardObject($(this).serializeArray());
   $(this)[0].reset();
+
+  console.log(formData)
 });
 
 function standardObject(orginialArray) {
@@ -12,4 +14,4 @@ function standardObject(orginialArray) {
   });
 
   return result;
-}
+};
