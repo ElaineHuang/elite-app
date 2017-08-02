@@ -2,114 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Elite</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elite</title>
 
-    <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/c3.css" rel="stylesheet">
-    <link href="static/styles.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/c3.css" rel="stylesheet">
+  <link href="static/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Elite Group</a>
-        </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Elite Group</a>
+      </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Dashboard<span class="sr-only">(current)</span></a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <div class="form-background">
-        <div class="row">
-            <div class="col-md-8 slogan">
-                <h1>Help us impove our analysis!</h2>
-                <p>Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better!</p>
-            </div>
-            <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
-                <div class="input-group">
-                  <div>1.產線</div>
-                  <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-                  <div>
-                    <input type="radio" name="machine" value="M023" checked> M023<span>
-                    <input type="radio" name="machine" value="M024"> M024<span>
-                    <input type="radio" name="machine" value="M025"> M025<span>
-                    <input type="radio" name="machine" value="M026"> M026<span>
-                  </div>                  
-                </div>
-                <div class="input-group">
-                  <div>2.亮燈</div>
-                  <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-                  <div>
-                    <input type="radio" name="light" value="red" checked> 紅燈<span>
-                    <input type="radio" name="light" value="yellow"> 黃燈<span>
-                  </div>                  
-                </div>
-                <div class="input-group">
-                  <div>3.Action Code</div>
-                  <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-                <select>
-                      <option value="A1" selected>A1</option>
-                      <option value="A2">A2</option>
-                      <option value="A3">A3</option>
-                      <option value="A4" >A4</option>
-                      <option value="A5">A5</option>
-                      <option value="A6">A6</option>
-                      <option value="A7" >A7</option>
-                      <option value="A8">A8</option>
-                      <option value="A9">A9</option>
-                      <option value="A10">A10</option>
-                      <option value="A11">A11</option>
-                      <option value="A12">A12</option> 
-                      <option value="A13">A13</option>
-                      <option value="A14">A14</option>   
-                      <option value="A15">A15</option>
-                      <option value="others">others</option>                                                                                      
-                </select>                  
-               
-                <div class="input-group">
-                  <div>4.Remark</div>
-                  <input type="text" class="form-control" placeholder="Enter your remark" name="Remark">
-                </div>
-                <hr class="dashed-hr">
-                <div class="btn-block">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Dashboard<span class="sr-only">(current)</span></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="form-background">
     <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-8">
-            <div id="rec-chart"></div>
-        </div>
+      <div class="col-md-8 slogan">
+          <h1>Help us impove our analysis!</h2>
+          <p>Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better!</p>
+      </div>
+      <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
+          <div class="form-group">
+            <label>1.產線</label>
+            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
+             <div class="btn-group" data-toggle="buttons">
+               <label class="btn btn-default active">
+                  <input type="radio" name="machine" value="M023" checked>M023
+               </label> 
+               <label class="btn btn-default">
+                  <input type="radio" name="machine" value="M024">M024
+               </label> 
+               <label class="btn btn-default">
+                  <input type="radio" name="machine" value="M025">M025
+               </label> 
+               <label class="btn btn-default">
+                  <input type="radio" name="machine" value="M026">M026
+               </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>2.亮燈</label>
+            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" name="light" value="red" checked>紅燈
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" name="light" value="yellow">黃燈
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>3.Action Code</label>
+            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
+            <select class="form-control">
+              <option value="A1" selected>A1</option>
+              <option value="A2">A2</option>
+              <option value="A3">A3</option>
+              <option value="A4" >A4</option>
+              <option value="A5">A5</option>
+              <option value="A6">A6</option>
+              <option value="A7" >A7</option>
+              <option value="A8">A8</option>
+              <option value="A9">A9</option>
+              <option value="A10">A10</option>
+              <option value="A11">A11</option>
+              <option value="A12">A12</option> 
+              <option value="A13">A13</option>
+              <option value="A14">A14</option>   
+              <option value="A15">A15</option>
+              <option value="others">others</option>
+            </select>                  
+          </div>
+          <div class="form-group">
+            <label>4.Remark</label>
+            <input type="text" class="form-control" placeholder="Enter your remark" name="Remark">
+          </div>
+          <hr class="dashed-hr">
+          <div class="btn-block">
+              <button type="submit">Submit</button>
+          </div>
+      </form>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Load d3.js and c3.js -->
-    <script src="/static/d3.v3.min.js" charset="utf-8"></script>
-    <script src="/static/c3.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/antixss.js" type="text/javascript"></script>
-    <script src="static/callApi.js" type="text/javascript"></script>
-    <script src="static/submit-form.js" type="text/javascript"></script>
+  </div>
+  <div class='tableauPlaceholder' id='viz1501656215524' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M023&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='M023&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M023&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div><script type='text/javascript'>var divElement = document.getElementById('viz1501656215524');var vizElement = divElement.getElementsByTagName('object')[0];vizElement.style.width='100%';vizElement.style.height='619px';var scriptElement = document.createElement('script');scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Load d3.js and c3.js -->
+  <script src="/static/d3.v3.min.js" charset="utf-8"></script>
+  <script src="/static/c3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="static/antixss.js" type="text/javascript"></script>
+  <script src="static/callApi.js" type="text/javascript"></script>
+  <script src="static/submit-form.js" type="text/javascript"></script>
 </body>
 
 </html>

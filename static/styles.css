@@ -19,10 +19,14 @@
   margin: 0;
 }
 
-.input-group {
+.form-group {
   margin-bottom: 10px;
   width: 100%;
   color: #525252;
+}
+
+.form-group > label {
+  display: block;
 }
 
 .form-background {

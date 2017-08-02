@@ -1,6 +1,13 @@
-# cf-sample-app-python
+# elite-app
 
-Push a simple Python Flask App to Cloud Foundry
+## Install
+
+```
+sudo apt-get install python-pip
+sudo pip install -r requirements.txt
+mongod
+python server.py
+```
 
 ## Prerequisites
 
