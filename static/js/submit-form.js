@@ -2,7 +2,14 @@ const SAVE_FORM = '/api/save_form';
 
 $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
+  
+  if ($("#action-code option:selected").text() === "others" && $("#remark").text() === "") {
+    alert('Remark field is required!!');
+    return;
+  }
+
   const formData = standardObject($(this).serializeArray());
+
   $(this)[0].reset();
 
   callApi(SAVE_FORM, 'POST', formData, () => {
