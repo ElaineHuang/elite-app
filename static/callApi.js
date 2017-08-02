@@ -15,8 +15,6 @@ const callApi = (url = '', method = 'GET', data = null, callback) => {
   client.send(data);
 };
 
-
-
 callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
   data = JSON.parse(errorCode.data);
   console.log(data);
