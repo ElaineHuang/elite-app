@@ -17,7 +17,7 @@ const callApi = (url = '', method = 'GET', data = null, callback) => {
 
 callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
   data = JSON.parse(errorCode.data);
-  console.log(data);
+  
   M023 = data.filter((d) => d.Machine === 'M023');
   M024 = data.filter((d) => d.Machine === 'M024');
   M025 = data.filter((d) => d.Machine === 'M025');
@@ -53,10 +53,10 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
           ],
           type: 'bar',
           colors: {
-            M023: '#ff8080',
-            M024: '#ff6666',
-            M025: '#ff4d4d',
-            M026: '#ff3333',
+            M023: '#ffb3b3',
+            M024: '#ffe066',
+            M025: '#70dbdb',
+            M026: '#d9b3ff',
           },
       },
       axis: {
@@ -67,11 +67,6 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
               }
           },
           rotated: true
-      },
-      regions: [
-          { axis: 'y', start: 0, end: 10, class: 'normal' },
-          { axis: 'y', start: 10, end: 50, class: 'high' },
-          { axis: 'y', start: 50, end: 80, class: 'critical' },
-      ]
+      }
   });
 });

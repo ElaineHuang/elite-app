@@ -68,11 +68,11 @@
 }
 
 .c3-region.normal {
-  fill: #ff9999;
+  fill: #ff9966;
 }
 
 .c3-region.high {
-  fill: #ff4d4d;
+  fill: #ff661a;
 }
 
 .c3-region.critical {
@@ -84,3 +84,9 @@ iframe {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.tableau-title {
+  text-align: center;
+  margin: 30px 0;
+}
+
