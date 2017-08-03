@@ -87,7 +87,7 @@ def save_form(db, data):
 	# db.maintainList.drop()
 	collect = db['maintainList']
 	data.update({
-		update_time: datetime.now()
+		'update_time': datetime.now()
 	})
 	db.maintainList.insert(data)
 	print ("save form")

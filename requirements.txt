@@ -3,3 +3,4 @@ Flask-MongoAlchemy==0.7.2
 Flask-PyMongo==0.5.1
 pymongo==3.4.0
 openpyxl==2.4.7
+xlrd==1.0.0
