@@ -38,8 +38,8 @@
   <div class="form-background">
     <div class="row">
       <div class="col-md-8 slogan">
-          <h1>Help us impove our analysis!</h2>
-          <p>Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better! Fill with the form, and we can do better!</p>
+          <h1>SMT 停機/異常燈號處理紀錄單</h2>
+          <p>機台「處理完」停機或異常燈號後，麻煩選填處理行動代碼，若行動代碼為「其他」時，請於備註填寫處理方式 >> </p>
       </div>
       <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
           <div class="form-group">
@@ -75,7 +75,7 @@
           <div class="form-group">
             <label>3.Action Code</label>
             <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-            <select class="form-control" id="action-code">
+            <select class="form-control" id="action-code" name="actionCode">
               <option value="A1" selected>A1</option>
               <option value="A2">A2</option>
               <option value="A3">A3</option>
@@ -106,14 +106,17 @@
     </div>
   </div>
   <div class="container">
-    <h2 class="tableau-title">Tableau</h2>
+    <h2 class="title">Tableau</h2>
     <div class='tableauPlaceholder' id='viz1501684018998' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M023&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='M023&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M023&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div><script type='text/javascript'>var divElement = document.getElementById('viz1501684018998');var vizElement = divElement.getElementsByTagName('object')[0];vizElement.style.width='1104px';vizElement.style.height='619px';var scriptElement = document.createElement('script');scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
   
     <div class='tableauPlaceholder' id='viz1501684315419' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M024&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='M024&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;M0&#47;M024&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div><script type='text/javascript'>var divElement = document.getElementById('viz1501684315419');var vizElement = divElement.getElementsByTagName('object')[0];vizElement.style.width='1004px';vizElement.style.height='869px';var scriptElement = document.createElement('script');scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
   </div>
-  
-  <div id="rec-chart"></div>
-
+  <div class="blue-block">
+    <h2 class="title">C3.js Bar chart</h2>
+    <div class="chart-block container">
+      <div id="rec-chart"></div>  
+    </div>
+  </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Load d3.js and c3.js -->
