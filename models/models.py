@@ -1,10 +1,15 @@
 from flask import Flask
-from pymongo import MongoClient, ASCENDING
+from pymongo import MongoClient
+
 import csv
 import json
 import os
 import glob
+import openpyxl
+import xlrd
+
 from bson.json_util import dumps
+from datetime import datetime
 
 def init_db():
 	#Did't not why this method can't use in EI-pass however local no problem..
@@ -24,43 +29,54 @@ def init_db():
  	uri = "mongodb://127.0.0.1:27017"
 	client = MongoClient(uri)
 	db = client['tic100']   
-
- 
-
 	return db
 
 
 def import_error_code_csv(db):
 
-
-	#table
-	count = 0
 	db.errorCodeTable.drop()
 	collect = db['errorCodeTable']
 	#CSV to JSON Conversion
-	header = ['Repetition', 'ErrCode', 'StartTime']
-	csv_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/')
-
+	csv_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
+	total = []
 	for file in glob.glob(csv_path + '*_file.csv' ):
 		csvfile = open(file, 'r')
-		machine_no =  file.split('_')[1]
+		machine_no =  file.split('/')[-1].split('.')[0].split('_')[1]
 		reader = csv.DictReader( csvfile )
-		print reader
-		row = {}
-		for each in reader:
-			for h in header:
-				row.update({
-					h: each[h]
-				})
-			row.update({
-				'_id': count,
-				'Machine': machine_no,
-			})				
-
-			db.errorCodeTable.insert(row)
-			count+=1
+		json_csv = list(reader)
+		for r in json_csv:
+			r.update({
+				'Machine': machine_no
+			})
+			total.append(r)
+		csvfile.close()
+	db.errorCodeTable.insert_many(total)
 
 	print ("done import errorCode")
+
+def import_error_code_raw_data(db):
+
+	db.errorCodeRawDataTable.drop()
+	collect = db['errorCodeRawDataTable']
+	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
+	data = []
+	for file in glob.glob(raw_data_path + 'EQErrRec_*.xlsx' ):
+		fileName = file.split('/')[-1].split('.')[0]
+		machine_no =  fileName.split('_')[1]
+		workbook = xlrd.open_workbook(filename=os.path.join(raw_data_path, file))
+		sheet = workbook.sheet_by_name(fileName)
+		keys = [v.value for v in sheet.row(0)]
+		for row_number in range(sheet.nrows):
+			row_data = {}
+			for col_number, cell in enumerate(sheet.row(row_number)):
+				row_data[keys[col_number]] = cell.value
+			row_data.update({
+				'Machine': machine_no
+			})
+			data.append(row_data)
+	db.errorCodeRawDataTable.insert_many(data)
+	print ("done import errorCodeRawDataTable")
+
 
 def get_db(db):
 	out_error_db = list(db.errorCodeTable.find())
@@ -70,7 +86,9 @@ def get_db(db):
 def save_form(db, data):
 	# db.maintainList.drop()
 	collect = db['maintainList']
-
+	data.update({
+		'update_time': datetime.now()
+	})
 	db.maintainList.insert(data)
 	print ("save form")
 

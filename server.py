@@ -2,20 +2,17 @@ from flask import Flask, render_template, request, jsonify
 import os
 import json
 from models import models
+from analysis import preprocessing
 
 app = Flask(__name__)
 
 
 port = int(os.getenv('PORT', 8000))
 db = models.init_db()
-# models.import_error_code_csv(db)
+
 
 @app.route('/')
 def home():
-    # add_test = TestCollection(number=1, name='test')
-    # add_test.save()
-    # print ("---------------------",add_test.query.first())
-
     return render_template('index.html')
 
 @app.route('/api/visitors', methods=['POST'])
@@ -47,7 +44,17 @@ def get_error_code():
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
-    
+def _some_processing():
+    try:
+        preprocessing.processing_to_csv()
+        # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
+        models.import_error_code_raw_data(db)
+        models.import_error_code_csv(db)
+
+    except Exception as e:
+        print (e)
 
 if __name__ == '__main__':
+    _some_processing()
     app.run(host='0.0.0.0', port=port, debug=True)
+    
