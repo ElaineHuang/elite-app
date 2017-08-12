@@ -37,7 +37,6 @@
   background: linear-gradient(to right, #896ca8, #6bbfec);
   padding: 90px 50px;
   color: white;
-  margin-bottom: 20px;
 }
 
 .form-background h1 {
@@ -95,12 +94,11 @@ iframe {
 }
 
 .blue-block {
-  background: #0059b3;
   padding: 50px;
 }
 
 .blue-block .title {
-  color: white;
+  color: #896ca8;
 }
 
 .chart-block {

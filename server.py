@@ -15,6 +15,10 @@ db = models.init_db()
 def home():
     return render_template('index.html')
 
+@app.route('/tableau')
+def tableau():
+    return render_template('tableau.html')
+
 @app.route('/api/visitors', methods=['POST'])
 def put_visitor():
     user = request.json['name']
