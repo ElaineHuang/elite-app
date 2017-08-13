@@ -17,6 +17,9 @@
   <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
     <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
     <input type="submit" value="send">
+    {% if response %}
+      <div class="upload_message">{{response}}</div>
+    {% endif %}
   </form>
 </body>
 

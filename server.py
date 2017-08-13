@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 from flask import Flask, render_template, request, jsonify
 import os
 import json
@@ -25,19 +26,20 @@ def upload_page():
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    hr = {}
     target = os.path.join(APP_ROOT, 'data/raw_data')
-    print (target)
     if not os.path.isdir(target):
         os.mkdir(target)
-    for file in request.files.getlist('file'):
-        print (file)
-        filename = file.filename
-        destination = "/".join([target, filename])
-        print (destination)
-        file.save(destination)
-
-    return "cool"
-
+    try:
+        for file in request.files.getlist('file'):
+            filename = file.filename
+            destination = "/".join([target, filename])
+            file.save(destination)
+            hr.update({'response': 'success'})
+    except Exception as e:
+        print (e)
+        hr.update({'response': u'伺服器內部發生錯誤'})
+    return render_template('upload.html', **hr)
 
 @app.route('/api/visitors', methods=['POST'])
 def put_visitor():
