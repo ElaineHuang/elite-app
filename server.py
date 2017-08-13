@@ -5,7 +5,7 @@ from models import models
 from analysis import preprocessing
 
 app = Flask(__name__)
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 port = int(os.getenv('PORT', 8000))
 db = models.init_db()
@@ -18,6 +18,26 @@ def home():
 @app.route('/tableau')
 def tableau():
     return render_template('tableau.html')
+
+@app.route('/upload_page')
+def upload_page():
+    return render_template('upload.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    target = os.path.join(APP_ROOT, 'data/raw_data')
+    print (target)
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    for file in request.files.getlist('file'):
+        print (file)
+        filename = file.filename
+        destination = "/".join([target, filename])
+        print (destination)
+        file.save(destination)
+
+    return "cool"
+
 
 @app.route('/api/visitors', methods=['POST'])
 def put_visitor():
@@ -47,6 +67,7 @@ def get_error_code():
         print (e)
         hr.update({'response': 'error'})
     return json.dumps(hr)
+
 
 def _some_processing():
     try:
