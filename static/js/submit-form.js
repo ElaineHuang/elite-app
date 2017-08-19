@@ -12,6 +12,10 @@ $( "#analysisForm" ).submit(function(event) {
 
   $(this)[0].reset();
 
+  formData['event_time'] = `${formData.date} ${formData.hour}`;
+  delete formData.date;
+  delete formData.hour;
+
   callApi(SAVE_FORM, 'POST', formData, () => {
     alert('We received your data, thanks!');
   });

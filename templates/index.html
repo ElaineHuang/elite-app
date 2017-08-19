@@ -45,7 +45,7 @@
       </div>
       <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
           <div class="form-group">
-            <label>1.產線</label>
+            <label>1. 產線</label>
             <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
              <div class="btn-group" data-toggle="buttons">
                <label class="btn btn-default active">
@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label>2.亮燈</label>
+            <label>2. 亮燈</label>
             <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
             <div class="btn-group" data-toggle="buttons">
               <label class="btn btn-default active">
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label>3.Action Code</label>
+            <label>3. Action Code</label>
             <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
             <select class="form-control" id="action-code" name="actionCode">
               <option value="A1 更换VAC电磁阀" selected>A1 更换VAC电磁阀</option>
@@ -90,20 +90,19 @@
             </select>                  
           </div>
           <div class="form-group">
-            <label>4.Remark</label>
+            <label>4. Remark</label>
             <input id="remark" type="text" class="form-control" placeholder="Enter your remark" name="Remark">
+          </div>
+          <div class="form-group">
+            <label>5. Event Time</label>
+            <input id="date" type="date" class="form-control half" placeholder="Enter your time" name="date">
+            <input id="hour" type="number" class="form-control half" placeholder="0 - 24" max="24" min="0" name="hour">
           </div>
           <hr class="dashed-hr">
           <div class="btn-block">
               <button type="submit">Submit</button>
           </div>
       </form>
-    </div>
-  </div>
-  <div class="chart-block">
-    <h2 class="title">C3.js Bar chart</h2>
-    <div class="container">
-      <div id="rec-chart"></div>  
     </div>
   </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -138,3 +138,7 @@ input[type=file] {
   float: right;
 }
 
+.half {
+  width: 49%;
+  display: inline-block;
+}
