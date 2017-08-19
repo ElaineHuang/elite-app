@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 from flask import Flask, render_template, request, jsonify
 import os
 import json
@@ -5,7 +6,7 @@ from models import models
 from analysis import preprocessing
 
 app = Flask(__name__)
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 port = int(os.getenv('PORT', 8000))
 db = models.init_db()
@@ -18,6 +19,27 @@ def home():
 @app.route('/tableau')
 def tableau():
     return render_template('tableau.html')
+
+@app.route('/upload_page')
+def upload_page():
+    return render_template('upload.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    hr = {}
+    target = os.path.join(APP_ROOT, 'data/raw_data')
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    try:
+        for file in request.files.getlist('file'):
+            filename = file.filename
+            destination = "/".join([target, filename])
+            file.save(destination)
+            hr.update({'response': 'success'})
+    except Exception as e:
+        print (e)
+        hr.update({'response': u'伺服器內部發生錯誤'})
+    return render_template('upload.html', **hr)
 
 @app.route('/api/visitors', methods=['POST'])
 def put_visitor():
@@ -47,6 +69,7 @@ def get_error_code():
         print (e)
         hr.update({'response': 'error'})
     return json.dumps(hr)
+
 
 def _some_processing():
     try:
