@@ -1,4 +1,5 @@
 const GET_ERROR_CODE = '/api/get_error_code';
+const GET_NEW_RECORD = '/api/get_new_record';
 
 const callApi = (url = '', method = 'GET', data = null, callback) => {
   if (data) {
@@ -17,4 +18,8 @@ const callApi = (url = '', method = 'GET', data = null, callback) => {
 
 callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
   console.log(errorCode);
+});
+
+callApi(GET_NEW_RECORD, 'GET', null, (result) => {
+  console.log(result);
 });
