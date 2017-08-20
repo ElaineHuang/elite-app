@@ -87,15 +87,15 @@ def get_new_record(db):
 	if len(new_record) > 5:
 		new_record = new_record[:5]
 	for r in new_record:
-		r['event-date'] = r['event-date'].strftime("%Y/%d/%m %H:%M")
-		r['update_time'] = r['update_time'].strftime("%Y/%d/%m %H:%M")
+		r['event-date'] = r['event-date'].strftime("%Y/%m/%d %H:%M")
+		r['update_time'] = r['update_time'].strftime("%Y/%m/%d %H:%M")
 	
 	return dumps(new_record)
 
 
 def save_form(db, data):
 	collect = db['actionCodeList']
-	data['event-date'] = datetime.strptime(data['event-date'], "%Y/%d/%m %H")
+	data['event-date'] = datetime.strptime(data['event-date'], "%Y/%m/%d %H")
 	data.update({
 		'update_time': datetime.now()
 	})
