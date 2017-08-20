@@ -17,6 +17,8 @@ $( "#analysisForm" ).submit(function(event) {
 
   callApi(SAVE_FORM, 'POST', formData, () => {
     alert('We received your data, thanks!');
+    $('#actionTable tbody tr').remove();
+    updateTable();
   });
 });
 

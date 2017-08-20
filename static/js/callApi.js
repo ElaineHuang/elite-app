@@ -20,6 +20,20 @@ callApi(GET_ERROR_CODE, 'GET', null, (errorCode) => {
   console.log(errorCode);
 });
 
-callApi(GET_NEW_RECORD, 'GET', null, (result) => {
-  console.log(result);
-});
+const updateTable = () => {
+  callApi(GET_NEW_RECORD, 'GET', null, (result) => {
+    const actionCodeList = JSON.parse(result.data);
+    console.log(actionCodeList);
+
+    let tableChild = "";
+
+    for (let i = 0; i < actionCodeList.length; i++) {
+      const actionCode = actionCodeList[i];
+      tableChild = tableChild + `<tr><td>${actionCode.machine}</td><td>${actionCode.light}</td><td>${actionCode.actionCode}</td><td>${actionCode.remark}</td><td>${actionCode['event-date']}</td><td>${actionCode['update_time']}</td></tr>`;
+    }
+
+    $("#actionTable > tbody").append(tableChild);
+  });
+}
+
+updateTable();
