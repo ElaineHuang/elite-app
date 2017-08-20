@@ -4,7 +4,7 @@ const SAVE_FORM = '/api/save_form';
 $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
   
-  if ($("#action-code option:selected").text() === "others" && $("#remark").text() === "") {
+  if ($("#action-code option:selected").text() === "others" && $("#remark").val() === "") {
     alert('Remark field is required!!');
     return;
   }
@@ -13,9 +13,6 @@ $( "#analysisForm" ).submit(function(event) {
 
   $(this)[0].reset();
 
-  // formData['event_time'] = `${formData.date} ${formData.hour}`;
-  // delete formData.date;
-  // delete formData.hour;
   console.log(formData)
 
   callApi(SAVE_FORM, 'POST', formData, () => {
