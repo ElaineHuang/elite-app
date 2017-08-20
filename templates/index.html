@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-md-8 slogan">
           <h1>SMT 停機/異常燈號處理紀錄單</h2>
-          <p>機台「處理完」停機或異常燈號後，麻煩選填處理行動代碼，若行動代碼為「其他」時，請於備註填寫處理方式 >> </p>
+          <p>機台停機或異常燈號後，麻煩選填處理行動代碼，若行動代碼為「其他」時，請於備註填寫處理方式 >> </p>
       </div>
       <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
           <div class="form-group">
@@ -80,20 +80,20 @@
             <label>3. Action Code</label>
             <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
             <select class="form-control" id="action-code" name="actionCode">
-              <option value="A1 电磁阀故障" selected>A1 电磁阀故障</option>
-              <option value="A2 吹氣电磁阀故障">A2 吹氣电磁阀故障</option>
+              <option value="A1 電磁閥故障" selected>A1 電磁閥故障</option>
+              <option value="A2 吹氣電磁閥故障">A2 吹氣電磁閥故障</option>
               <option value="A3 定位板故障">A3 定位板故障</option>
               <option value="A4 空氣過濾器故障">A4 空氣過濾器故障</option>
               <option value="A5 真空泵故障">A5 真空泵故障</option>
               <option value="A6 更換電池">A6 更換電池</option>
-              <option value="A7 需要更换喷射泵">A7 需要更換喷射泵</option>
+              <option value="A7 需要更換喷射泵">A7 需要更換喷射泵</option>
               <option value="A8 聯絡廠商維修">A8 聯絡廠商維修</option>
               <option value="其它">其它</option>
             </select>                  
           </div>
           <div class="form-group">
             <label>4. 其它處理動作</label>
-            <input id="remark" type="text" class="form-control" placeholder="Enter your remark" name="remark">
+            <input id="remark" type="text" class="form-control" placeholder="Enter your remark" value="" name="remark">
           </div>
           <div class="form-group">
             <label>5. 發生事件時間</label>

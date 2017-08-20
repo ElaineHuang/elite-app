@@ -83,7 +83,7 @@ def get_db(db):
 	return dumps(out_error_db)
 
 def get_new_record(db):
-	new_record = list(db.actionCodeList.find())
+	new_record = list(db.actionCodeList.find().sort([('update_time', -1)]))
 	if len(new_record) > 5:
 		new_record = new_record[:5]
 	for r in new_record:
