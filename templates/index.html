@@ -11,6 +11,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="/static/css/c3.css" rel="stylesheet">
   <link href="/static/css/styles.css" rel="stylesheet">
+  <link href="/static/css/foundation-datepicker.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -84,19 +86,20 @@
               <option value="A4 更换空氣過濾器">A4 更换空氣過濾器</option>
               <option value="A5 更換真空泵">A5 更換真空泵</option>
               <option value="A6 更換電池">A6 更換電池</option>
-              <option value="A7 需要更换喷射泵">A7 需要更换喷射泵</option>
+              <option value="A7 需要更换喷射泵">A7 需要更換喷射泵</option>
               <option value="A8 聯絡廠商維修">A8 聯絡廠商維修</option>
               <option value="others">others</option>
             </select>                  
           </div>
           <div class="form-group">
-            <label>4. Remark</label>
+            <label>4. 其它處理動作</label>
             <input id="remark" type="text" class="form-control" placeholder="Enter your remark" name="Remark">
           </div>
           <div class="form-group">
-            <label>5. Event Time</label>
-            <input id="date" type="date" class="form-control half" placeholder="Enter your time" name="date">
-            <input id="hour" type="number" class="form-control half" placeholder="0 - 24" max="24" min="0" name="hour">
+            <label>5. 發生事件時間</label>
+<!--             <input id="date" type="date" class="form-control half" placeholder="Enter your time" name="date">
+            <input id="hour" type="number" class="form-control half" placeholder="0 - 24" max="24" min="0" name="hour"> -->
+            <input type="text" class="form-control" value="" name="event-date" id="event-date">
           </div>
           <hr class="dashed-hr">
           <div class="btn-block">
@@ -110,6 +113,7 @@
   <!-- Load d3.js and c3.js -->
   <script src="/static/js/d3.v3.min.js" charset="utf-8"></script>
   <script src="/static/js/c3.min.js"></script>
+  <script src="/static/js/foundation-datepicker.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="/static/js/antixss.js" type="text/javascript"></script>

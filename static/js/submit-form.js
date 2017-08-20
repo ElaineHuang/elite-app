@@ -1,5 +1,6 @@
 const SAVE_FORM = '/api/save_form';
 
+
 $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
   
@@ -12,9 +13,10 @@ $( "#analysisForm" ).submit(function(event) {
 
   $(this)[0].reset();
 
-  formData['event_time'] = `${formData.date} ${formData.hour}`;
-  delete formData.date;
-  delete formData.hour;
+  // formData['event_time'] = `${formData.date} ${formData.hour}`;
+  // delete formData.date;
+  // delete formData.hour;
+  console.log(formData)
 
   callApi(SAVE_FORM, 'POST', formData, () => {
     alert('We received your data, thanks!');
@@ -30,3 +32,15 @@ function standardObject(orginialArray) {
 
   return result;
 };
+
+
+$('#event-date').fdatepicker({
+  format: 'yyyy/mm/dd hh:00',
+  disableDblClickSelection: true,
+  pickTime: 1,
+  minView: 1,
+  leftArrow:'<<',
+  rightArrow:'>>'
+});
+
+

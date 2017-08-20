@@ -82,13 +82,23 @@ def get_db(db):
 	out_error_db = list(db.errorCodeTable.find())
 	return dumps(out_error_db)
 
+def get_new_record(db):
+	new_record = list(db.actionCodeList.find())
+	if len(new_record) > 5:
+		new_record = new_record[:5]
+	for r in new_record:
+		r['event-date'] = r['event-date'].strftime("%Y/%d/%m %H:%M")
+		r['update_time'] = r['update_time'].strftime("%Y/%d/%m %H:%M")
+	
+	return dumps(new_record)
+
 
 def save_form(db, data):
-	# db.maintainList.drop()
-	collect = db['maintainList']
+	collect = db['actionCodeList']
+	data['event-date'] = datetime.strptime(data['event-date'], "%Y/%d/%m %H")
 	data.update({
 		'update_time': datetime.now()
 	})
-	db.maintainList.insert(data)
+	db.actionCodeList.insert(data)
 	print ("save form")
 

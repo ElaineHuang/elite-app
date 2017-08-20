@@ -70,6 +70,17 @@ def get_error_code():
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
+@app.route('/api/get_new_record', methods=['GET'])
+def get_new_record():
+    hr = {}
+    try:
+        data = models.get_new_record(db)
+        hr.update({'response': 'success', 'data': data})
+    except Exception as e:
+        print (e)
+        hr.update({'response': 'error'})
+    return json.dumps(hr)
+
 
 def _some_processing():
     try:
