@@ -4,7 +4,7 @@ const SAVE_FORM = '/api/save_form';
 $( "#analysisForm" ).submit(function(event) {
   event.preventDefault();
   
-  if ($("#action-code option:selected").text() === "others" && $("#remark").val() === "") {
+  if ($("#action-code option:selected").text() === "其它" && $("#remark").val() === "") {
     alert('Remark field is required!!');
     return;
   }
