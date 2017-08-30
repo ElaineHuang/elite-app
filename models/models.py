@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 from flask import Flask
 from pymongo import MongoClient
 
@@ -7,9 +8,11 @@ import os
 import glob
 import openpyxl
 import xlrd
-
+import time
 from bson.json_util import dumps
 from datetime import datetime
+import pandas as pd
+
 
 def init_db():
 	#Did't not why this method can't use in EI-pass however local no problem..
@@ -60,11 +63,11 @@ def import_error_code_raw_data(db):
 	collect = db['errorCodeRawDataTable']
 	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
 	data = []
-	for file in glob.glob(raw_data_path + 'EQErrRec_*.xlsx' ):
+	for file in glob.glob(raw_data_path + '*.xlsx' ):
 		fileName = file.split('/')[-1].split('.')[0]
 		machine_no =  fileName.split('_')[1]
 		workbook = xlrd.open_workbook(filename=os.path.join(raw_data_path, file))
-		sheet = workbook.sheet_by_name(fileName)
+		sheet = workbook.sheet_by_name( 'EQErrRec_'+ fileName.split('_')[0])
 		keys = [v.value for v in sheet.row(0)]
 		for row_number in range(sheet.nrows):
 			row_data = {}
@@ -101,4 +104,46 @@ def save_form(db, data):
 	})
 	db.actionCodeList.insert(data)
 	print ("save form")
+
+
+def get_and_save_new_raw_files(filename, machine):
+	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
+	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
+	files_list = sorted(glob.glob(raw_data_path + machine + "*"))
+	useful_files_list = sorted(glob.glob(useful_data_path + machine + "*"))
+	sheet_name = 'EQErrRec_' + machine	
+	df = []
+	try:
+		for f in files_list:
+			data = pd.read_excel(f, sheet_name)
+			df.append(data)
+
+		#df list 轉為dataframe
+		df = pd.concat(df)
+		#把重複的列drop掉
+		df = df.drop_duplicates()
+		#取最新的檔案當作更新黨
+		fileName = files_list[-1].split('/')[-1].split('.')[0]
+
+		#開啟檔案並寫入
+		writer_file = pd.ExcelWriter(fileName +'.xlsx')
+		df.to_excel(writer_file, sheet_name)
+		writer_file.save()
+
+		#刪除舊的機台資訊xlsx csv擋
+		os.remove(files_list[0])
+		for u_f in useful_files_list:
+			os.remove(u_f)
+
+
+	except Exception as e:
+		raise e
+
+
+def get_raw_data_filen_name_list():
+	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')	
+	files_list = sorted(glob.glob(raw_data_path + "*"))
+
+	return files_list
+
 

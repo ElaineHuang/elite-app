@@ -40,12 +40,17 @@
     <h1>Upload your Data</h1>
     <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
       <div class="btn-block">
-        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
-        <!-- <button type="submit">Send</button> -->
+        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <label>請填入機台名稱 (ex: M023)</label>
+        <input id="machine" type="text" class="form-control" placeholder="機台名稱" value="" name="machine">
+        <button type="submit">Send</button>        
       </div>
       {% if response %}
         <div class="upload_message">{{response}}</div>
       {% endif %}
+      {% for f in files %}
+        <div class="files">{{f}}</div>
+      {% endfor %}
     </form>
 </div>
 </body>

@@ -9,6 +9,7 @@ SpecList = ['E620002L', 'E620002R', 'E620003L', 'E620003R', 'E551010L', 'E551010
 raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data')
 useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data')
 files = [f for f in os.listdir(raw_data_path) if os.path.isfile(os.path.join(raw_data_path, f))]
+print files
 def sort_table(table, cols):
     """ sort a table by multiple columns
         table: a list of lists (or tuple of tuples) where each inner list 
@@ -31,7 +32,7 @@ def processing_to_csv():
 		unsortedTable = []
 		workbook = openpyxl.load_workbook(filename=os.path.join(raw_data_path, f), read_only=True)
 		
-		sheet = workbook.get_sheet_by_name(fileName)
+		sheet = workbook.get_sheet_by_name('EQErrRec_'+ fileName.split('_')[0])
 		Datasize = sheet.max_row-1
 		for row in sheet.iter_rows(min_row=2, min_col=2, max_col=4, max_row=Datasize+1):
 			unsortedTable.append([row[0].value, row[1].value])
