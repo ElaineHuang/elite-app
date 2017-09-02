@@ -85,14 +85,9 @@ def get_new_record():
 def get_statistic_data():
     hr = {}
     try:
-        data = {}
         error_code_data = statistic.error_code_statistic()
-
-        data.update({
-            'ErrorCode':error_code_data,
-            'ThreeMin': {},
-            'FiveMin': {}
-        })
+        light_data = statistic.lighter_statistic()
+        data = statistic.merge_chart_time_range(error_code_data, light_data)
         hr.update({'response': 'success', 'data': data})
     except Exception as e:
         hr.update({'response': 'error'})
