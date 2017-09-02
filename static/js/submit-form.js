@@ -22,6 +22,13 @@ $( "#analysisForm" ).submit(function(event) {
   });
 });
 
+$( "#upload-form" ).submit(function(event) {
+  if ($("#machine").val() === "") {
+    alert("請填入機台！");
+    return false;
+  }
+});
+
 function standardObject(orginialArray) {
   const result = {};
 
@@ -32,14 +39,13 @@ function standardObject(orginialArray) {
   return result;
 };
 
-
-$('#event-date').fdatepicker({
-  format: 'yyyy/mm/dd hh:00',
-  disableDblClickSelection: true,
-  pickTime: 1,
-  minView: 1,
-  leftArrow:'<<',
-  rightArrow:'>>'
-});
-
-
+if ($('#event-date')[0]) {
+  $('#event-date').fdatepicker({
+    format: 'yyyy/mm/dd hh:00',
+    disableDblClickSelection: true,
+    pickTime: 1,
+    minView: 1,
+    leftArrow:'<<',
+    rightArrow:'>>'
+  });
+}
