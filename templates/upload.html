@@ -52,6 +52,18 @@
         <div class="files">{{f}}</div>
       {% endfor %}
     </form>
+    <form id="upload-form-light" action="{{ url_for('upload_light') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+      <div class="btn-block">
+        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <button type="submit">Send</button>        
+      </div>
+      {% if response_light %}
+        <div class="upload_message">{{response_light}}</div>
+      {% endif %}
+      {% for f in files_light %}
+        <div class="files">{{f}}</div>
+      {% endfor %}
+    </form>    
 </div>
 </body>
 

@@ -106,44 +106,62 @@ def save_form(db, data):
 	print ("save form")
 
 
-def get_and_save_new_raw_files(filename, machine):
-	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
-	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
-	files_list = sorted(glob.glob(raw_data_path + machine + "*"))
-	useful_files_list = sorted(glob.glob(useful_data_path + machine + "*"))
-	sheet_name = 'EQErrRec_' + machine	
+def get_and_save_new_raw_files(filename, machine=None):
+	sheet_name = []
+	if machine is not None:
+		raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
+		useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
+		files_list = sorted(glob.glob(raw_data_path + machine + "*"))
+		useful_files_list = sorted(glob.glob(useful_data_path + machine + "*"))
+		sheet_name = ['EQErrRec_' + machine]
+
+	else:
+		raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/light_data/')
+		useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_light_data/')
+		files_list = sorted(glob.glob(raw_data_path + 'light_' + "*"))		
+		useful_files_list = sorted(glob.glob(useful_data_path + 'light_' + "*"))
+		
 	df = []
 	try:
 		for f in files_list:
-			data = pd.read_excel(f, sheet_name)
-			df.append(data)
-
+			if machine is None:
+				workbook = openpyxl.load_workbook(filename=os.path.join(raw_data_path, f), read_only=True)			
+				for sheetName in workbook.get_sheet_names():
+					sheet = workbook.get_sheet_by_name(sheetName)
+					if not sheet.cell(row = 1, column=1).value == None:
+						sheet_name.append(sheetName)		
+			for sheet in sheet_name:
+				data = pd.read_excel(f, sheet)
+				df.append(data)
 		#df list 轉為dataframe
 		df = pd.concat(df)
 		#把重複的列drop掉
 		df = df.drop_duplicates()
 		#取最新的檔案當作更新黨
 		fileName = files_list[-1].split('/')[-1].split('.')[0]
-
 		#開啟檔案並寫入
-		writer_file = pd.ExcelWriter(fileName +'.xlsx')
-		df.to_excel(writer_file, sheet_name)
-		writer_file.save()
+		writer_file = pd.ExcelWriter(useful_data_path + fileName +'.xlsx')			
+		df.to_excel(writer_file, sheet)				
+		writer_file.save()			
 
 		#刪除舊的機台資訊xlsx csv擋
 		os.remove(files_list[0])
+			
 		for u_f in useful_files_list:
-			os.remove(u_f)
+			os.remove(u_f)				
 
 
 	except Exception as e:
 		raise e
 
+def get_raw_data_filen_name_list(target):
+	# raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
+	files = []	
+	files_list = sorted(glob.glob(target+ '/' + "*"))
+	for f in files_list:
+		fileName = f.split('/')[-1].split('.')[0]
+		files.append(fileName)
 
-def get_raw_data_filen_name_list():
-	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')	
-	files_list = sorted(glob.glob(raw_data_path + "*"))
-
-	return files_list
+	return files
 
 

@@ -42,10 +42,30 @@ def upload():
         file.save(destination)
         models.get_and_save_new_raw_files(filename, machine)
         hr.update({'response': 'success',
-                    'files' : moedls.get_raw_data_filen_name_list()
+                    'files' : models.get_raw_data_filen_name_list(target)
                     })
     except Exception as e:
         hr.update({'response': u'伺服器內部發生錯誤'})
+    return render_template('upload.html', **hr)
+
+@app.route('/upload_light', methods=['POST'])
+def upload_light():
+    hr = {}
+    target = os.path.join(APP_ROOT, 'data/light_data')
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    try:
+        file = request.files.get('file')
+        save_time = datetime.now().strftime("%Y%m%d%H%M%S")
+        filename = 'light_' + save_time + '.xlsx'
+        destination = "/".join([target, filename])
+        file.save(destination)
+        models.get_and_save_new_raw_files(filename)
+        hr.update({'response_light': 'success',
+                    'files_light' : models.get_raw_data_filen_name_list(target)
+                    })
+    except Exception as e:
+        hr.update({'response_light': u'伺服器內部發生錯誤'})
     return render_template('upload.html', **hr)
 
 
