@@ -115,7 +115,6 @@ iframe {
 }
 
 .wold-background {
-  height: calc(100% - 52px);
   background: url(background.jpg);
   padding: 30px;
 }
@@ -209,4 +208,66 @@ input[type=file] {
 
 .table {
   background: white;
+}
+
+.dashboard-container {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  width: 48%;
+  margin-top: 30px;
+}
+
+.dashboard-container:nth-child(even) {
+  margin-right: 3%;
+}
+
+.dashboard-block { 
+  background: white;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dashboard-block::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  display: block;
+  background: #f44242;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 9;
+}
+
+.dashboard-block .ping {
+  width: 65%;
+  height: 3px;
+  background: linear-gradient(to right, #f44242 50%, rgba(0, 0, 0, 0) 50%);
+  display: inline-block;
+  position: absolute;
+  bottom: 36px;
+  left: 19%;
+  transition: transform .8s;
+}
+
+.dashboard-container .health-number {
+  position: absolute;
+  right: -24px;
+  top: -18px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #1c478e;
+  color: white;
+  font-size: 34px;
+  padding: 27px 32px;
+}
+
+.dashboard-container .health-info {
+  padding: 30px 20px;
+  background: #1c478e;
+  color: white;
+  font-family: monospace;
 }
