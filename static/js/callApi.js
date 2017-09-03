@@ -72,45 +72,60 @@ const machineListGenerator = (data) => {
   return machineList;
 }
 
-callApi(GET_STATISTIC, 'GET', null, (res) => {
-  const data = res.data;
-  console.log(data);
-  let columns = [];
+$(document).ready(() => {
 
-  const machineList = machineListGenerator(data);
-  const machineNames = Object.keys(data.ErrorCode)
-  const xLine = xLineGenerator(data.ErrorCode);
+  if (window.location.href.indexOf('statistic') > -1) {
+    callApi(GET_STATISTIC, 'GET', null, (res) => {
+      const data = res.data;
+      console.log(data);
+      let columns = [];
 
-  columns.push(xLine);
-  columns = columns.concat(machineList[$('input:radio[name=machine]:checked').val()]);
+      const machineList = machineListGenerator(data);
+      const machineNames = Object.keys(data.ErrorCode)
+      const xLine = xLineGenerator(data.ErrorCode);
 
-  const chart = c3.generate({
-    bindto: '#error-code-chart',
-    size: {
-      width: 1170,
-      height: 600,
-    },
-    data: {
-      x: 'x',
-      xFormat: '%Y-%m',
-      columns: columns,
-    },
-    axis: {
-      x: {
-        type: 'timeseries',
-        tick: {
-          format: '%Y-%m'
+      columns.push(xLine);
+      columns = columns.concat(machineList[$('input:radio[name=machine]:checked').val()]);
+
+      const chart = c3.generate({
+        bindto: '#error-code-chart',
+        size: {
+          width: 1170,
+          height: 600,
+        },
+        data: {
+          x: 'x',
+          xFormat: '%Y-%m',
+          columns: columns,
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%Y-%m'
+            }
+          }
         }
-      }
-    }
-  });
+      });
 
-  $('input:radio[name=machine]').change(function() {
-    const checkedMachine = $('input:radio[name=machine]:checked').val();
-    chart.load({
-      columns: machineList[checkedMachine]
+      $('input:radio[name=machine]').change(function() {
+        const checkedMachine = $('input:radio[name=machine]:checked').val();
+        chart.load({
+          columns: machineList[checkedMachine]
+        });
+      });
     });
+  }
+
+  if (window.location.href.indexOf('record') > -1) {
+    updateTable();
+  }
+
+  const errorCodeList = [
+    "E001001", "E031016", "E041205", "W940100", "W502001", "W432000", "W362000"
+  ];
+
+  errorCodeList.forEach((code) => {
+    $('[data-toggle="' + code + '"]').popover({focus: true});   
   });
 });
-
-updateTable();

@@ -38,6 +38,26 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+  <div class="wold-background">
+    <div class="container">
+      <table class="table table-hover table-striped" id="errorCodeTable">
+        <thead>
+          <tr>
+            <th style="line-height: 2.3">Machine / Error Code</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="E001001" data-content="沒有執行返回原點" data-placement="bottom" data-trigger="focus">E001001</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="E031016" data-content="傳送軌道上檢測到基板" data-placement="bottom" data-trigger="focus">E031016</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="E041205" data-content="沒有運行返回原點" data-placement="bottom" data-trigger="focus">E041205</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="W940100" data-content="軸動作.請確認是否安全." data-placement="bottom" data-trigger="focus">W940100</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="W502001" data-content="在MS參數上,[打開安全蓋時,<START>開關無效]項有效.請關閉安全蓋後,開始生產." data-placement="bottom" data-trigger="focus">W502001</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="W432000" data-content="未結束返回原點. 請確認一下搬運軌道上沒有Head. 請確認一下機板傳送沒有問題." data-placement="bottom" data-trigger="focus">W432000</a></th>
+            <th><a href="#" class="btn btn-default" data-toggle="W362000" data-content="現況的送料器位置發生變化,是否確實要實施優化?" data-placement="bottom" data-trigger="focus">W362000</a></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Load d3.js and c3.js -->
@@ -45,7 +65,8 @@
   <script src="/static/js/c3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="/static/js/antixss.js" type="text/javascript"></script>
+  <script src="/static/js/callApi.js" type="text/javascript"></script>
+  <script src="/static/js/dashboard.js" type="text/javascript"></script>
 </body>
 
 </html>
