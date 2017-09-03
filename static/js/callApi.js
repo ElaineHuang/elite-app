@@ -126,6 +126,6 @@ $(document).ready(() => {
   ];
 
   errorCodeList.forEach((code) => {
-    $('[data-toggle="' + code + '"]').popover({focus: true});   
+    $('[data-toggle="' + code + '"]').popover();   
   });
 });

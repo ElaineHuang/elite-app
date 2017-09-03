@@ -9,16 +9,24 @@ $(document).ready(() => {
     const machineList = result.data;
 
     let tableChild = '';
-
+    let errorChild = '<div class="alert alert-warning">';
+    const errors = [];
     $.each(machineList, (machine, errorCodes) => {
       tableChild = tableChild + `<tr><td>${machine}</td>`;
       $.each(errorCodes, (code, timeList) => {
         tableChild = tableChild + `<td class='align-center'>${timeList.length > 0 ? '<span class="error-icon"></span>' : '<span class="success-icon"></span>'}</td>`;
+        if (timeList.length > 0) {
+          errors.push(code);
+          errorChild = errorChild + `${machine} - ${code} 發生時間： ${timeList.join(', ')}<br>`;
+        }
       });
-      tableChild = tableChild + '</tr>'; 
+      tableChild = tableChild + '</tr>';
     });
-
+    errorChild = errorChild + '</div>';
     $("#errorCodeTable > tbody").append(tableChild);
+    if (errors.length > 0) {
+      $("#error-list").append(errorChild);
+    }
   });
 
   $("#M023-health").html("25");
