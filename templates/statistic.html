@@ -33,51 +33,42 @@
           <li><a href="/">Dashboard</a></li>
           <li><a href="/record">Record</a></li>
           <li><a href="/tableau">Tableau</a></li>
-          <li class="active"><a href="/upload_page">Upload File</a></li>
-          <li><a href="/statistic">Statistic</a></li>
+          <li><a href="/upload_page">Upload File</a></li>
+          <li class="active"><a href="/statistic">Statistic</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-  <div class="blue-block">
-    <h1>Upload your Data</h1>
-    <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data" class="upload-form">
-      <h2 class="upload-title">請上傳error code的csv檔</h2>
-      <div class="btn-block">
-        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-        <label>請填入機台名稱 (ex: M023)</label>
-        <input id="machine" type="text" class="form-control" placeholder="機台名稱" value="" name="machine">
-        <hr class="dashed-hr">
-        <div class="btn-block">
-          <button type="submit">Send</button>
-        </div>
+  <div class="container">
+    <h2 class="title">Error Code / Month</h2>
+    <div class="align-center">
+      <div class="btn-group" data-toggle="buttons">
+         <label class="btn btn-default active">
+            <input type="radio" name="machine" value="M023" checked>M023
+         </label> 
+         <label class="btn btn-default">
+            <input type="radio" name="machine" value="M024">M024
+         </label> 
+         <label class="btn btn-default">
+            <input type="radio" name="machine" value="M025">M025
+         </label> 
+         <label class="btn btn-default">
+            <input type="radio" name="machine" value="M026">M026
+         </label>
       </div>
-      {% if response %}
-        <div class="upload_message">{{response}}</div>
-      {% endif %}
-      <ul>
-      {% for f in files %}
-        <li class="files">{{f}}</li>
-      {% endfor %}
-    </ul>
-    </form>
-    <form id="upload-form-light" action="{{ url_for('upload_light') }}" method="POST" enctype="multipart/form-data" class="upload-form">
-      <h2 class="upload-title">請上傳三色燈的csv檔</h2>
-      <div class="btn-block">
-        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-        <button type="submit">Send</button>        
-      </div>
-      {% if response_light %}
-        <div class="upload_message">{{response_light}}</div>
-      {% endif %}
-      {% for f in files_light %}
-        <div class="files">{{f}}</div>
-      {% endfor %}
-    </form>    
+    </div>
+    <div id="error-code-chart"></div>
   </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="/static/js/submit-form.js" type="text/javascript"></script>
+  <!-- Load d3.js and c3.js -->
+  <script src="/static/js/d3.v3.min.js" charset="utf-8"></script>
+  <script src="/static/js/c3.min.js"></script>
+  <script src="/static/js/foundation-datepicker.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/static/js/antixss.js" type="text/javascript"></script>
+  <script src="/static/js/callApi.js" type="text/javascript"></script>
 </body>
 
 </html>

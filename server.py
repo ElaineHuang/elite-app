@@ -18,6 +18,10 @@ db = models.init_db()
 def home():
     return render_template('index.html')
 
+@app.route('/record')
+def record():
+    return render_template('record.html')
+
 @app.route('/tableau')
 def tableau():
     return render_template('tableau.html')
@@ -25,6 +29,10 @@ def tableau():
 @app.route('/upload_page')
 def upload_page():
     return render_template('upload.html')
+
+@app.route('/statistic')
+def statistic_page():
+    return render_template('statistic.html')
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -110,6 +118,7 @@ def get_statistic_data():
         data = statistic.merge_chart_time_range(error_code_data, light_data)
         hr.update({'response': 'success', 'data': data})
     except Exception as e:
+        print e
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
