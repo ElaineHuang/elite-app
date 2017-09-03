@@ -11,8 +11,6 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <link href="/static/css/c3.css" rel="stylesheet">
   <link href="/static/css/styles.css" rel="stylesheet">
-  <link href="/static/css/foundation-datepicker.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -32,107 +30,22 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/">Dashboard</a></li>
+          <li><a href="/record">Record</a></li>
           <li><a href="/tableau">Tableau</a></li>
           <li><a href="/upload_page">Upload File</a></li>
+          <li><a href="/statistic">Statistic</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-
-  <div class="form-background">
-    <div class="row">
-      <div class="col-md-8 slogan">
-          <h1>SMT 停機/異常燈號處理紀錄單</h2>
-          <p>機台停機或異常燈號後，麻煩選填處理行動代碼，若行動代碼為「其他」時，請於備註填寫處理方式 >> </p>
-      </div>
-      <form name="analysisForm" class="form-container col-md-4" id="analysisForm">
-          <div class="form-group">
-            <label>1. 產線</label>
-            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-             <div class="btn-group" data-toggle="buttons">
-               <label class="btn btn-default active">
-                  <input type="radio" name="machine" value="M023" checked>M023
-               </label> 
-               <label class="btn btn-default">
-                  <input type="radio" name="machine" value="M024">M024
-               </label> 
-               <label class="btn btn-default">
-                  <input type="radio" name="machine" value="M025">M025
-               </label> 
-               <label class="btn btn-default">
-                  <input type="radio" name="machine" value="M026">M026
-               </label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>2. 亮燈</label>
-            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-default active">
-                <input type="radio" name="light" value="red" checked>紅燈
-              </label>
-              <label class="btn btn-default">
-                <input type="radio" name="light" value="yellow">黃燈
-              </label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>3. Action Code</label>
-            <!-- <input type="text" class="form-control" placeholder="Enter your name" name="name"> -->
-            <select class="form-control" id="action-code" name="actionCode">
-              <option value="A1 電磁閥故障" selected>A1 電磁閥故障</option>
-              <option value="A2 吹氣電磁閥故障">A2 吹氣電磁閥故障</option>
-              <option value="A3 定位板故障">A3 定位板故障</option>
-              <option value="A4 空氣過濾器故障">A4 空氣過濾器故障</option>
-              <option value="A5 真空泵故障">A5 真空泵故障</option>
-              <option value="A6 更換電池">A6 更換電池</option>
-              <option value="A7 需要更換喷射泵">A7 需要更換喷射泵</option>
-              <option value="A8 聯絡廠商維修">A8 聯絡廠商維修</option>
-              <option value="A9 其它">A9 其它</option>
-            </select>                  
-          </div>
-          <div class="form-group">
-            <label>4. 其它處理動作</label>
-            <input id="remark" type="text" class="form-control" placeholder="Enter your remark" value="" name="remark">
-          </div>
-          <div class="form-group">
-            <label>5. 發生事件時間</label>
-            <input type="text" class="form-control" value="" name="event-date" id="event-date">
-          </div>
-          <hr class="dashed-hr">
-          <div class="btn-block">
-              <button type="submit">Submit</button>
-          </div>
-      </form>
-    </div>
-  </div>
-  <div class="container">
-    <table class="table table-hover table-striped" id="actionTable">
-      <thead>
-        <tr>
-          <th>產線</th>
-          <th>亮燈</th>
-          <th>Action Code</th>
-          <th>其他處理動作</th>
-          <th>發生事件時間</th>
-          <th>紀錄時間</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Load d3.js and c3.js -->
   <script src="/static/js/d3.v3.min.js" charset="utf-8"></script>
   <script src="/static/js/c3.min.js"></script>
-  <script src="/static/js/foundation-datepicker.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="/static/js/antixss.js" type="text/javascript"></script>
-  <script src="/static/js/callApi.js" type="text/javascript"></script>
-  <script src="/static/js/submit-form.js" type="text/javascript"></script>
 </body>
 
 </html>
