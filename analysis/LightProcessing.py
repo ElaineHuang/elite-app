@@ -28,11 +28,11 @@ def sort_table(table, cols):
 
 def calculate_light():
 	## Adjusting sdTimeLimit if you want to change the low bundary
-	# sdTimeLimit = 100
-	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/light_data/')
-	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_light_data/')		
-	# raw_data_path = os.path.join(os.path.abspath(os.path.dirname('../data')), 'data/light_data/')
-	# useful_data_path = os.path.join(os.path.abspath(os.path.dirname('../data')), 'data/useful_light_data/')	
+	sdTimeLimit = 180
+	# raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/light_data/')
+	# useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_light_data/')		
+	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('../data')), 'data/light_data/')
+	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('../data')), 'data/useful_light_data/')	
 	files_list = sorted(glob.glob(raw_data_path + "*.xlsx"))	
 	SpecList = ['04', '05', '06', '10']
 

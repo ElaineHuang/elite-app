@@ -113,6 +113,16 @@ def get_statistic_data():
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
+@app.route('/api/get_danger_error_code', methods=['GET'])
+def get_danger_error_code():
+    hr = {}
+    try:
+        danger_error_code = statistic.find_danger_code()
+        hr.update({'response': 'success', 'data': danger_error_code})
+    except Exception as e:
+        hr.update({'response': 'error'})
+    return json.dumps(hr)
+
 def _some_processing():
     try:
         preprocessing.processing_to_csv()

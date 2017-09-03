@@ -121,7 +121,37 @@ def merge_chart_time_range(error_code_data, light_data):
 					for mm in month:
 						if mm not in merged_dict[item][machine][y]:
 							result[item][machine][y].update({mm:0})
-	return result	
+	return result
+
+def find_danger_code():
+	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
+	files_list = sorted(glob.glob(useful_data_path + "*.csv"))
+	files = [f for f in files_list if os.path.isfile(os.path.join(useful_data_path, f))]
+	danger_count = {}
+	danger_code = ['E001001', 'E031016', 'E041205', 'W940100', 'W502001', 'W432000', 'W362000']
+	now_time = datetime.now()
+
+	for f in files:
+		machine_name = os.path.splitext(f)[0].split('/')[-1].split('_')[0]
+		df = pd.read_csv(f)
+		df['StartTime'] = pd.to_datetime(df['StartTime'],format='%Y/%m/%d %H:%M:%S')
+		total_time = df['StartTime']
+		min_time = now_time - relativedelta(months=5)
+
+		result = {}
+		if not machine_name in danger_count:
+			danger_count.setdefault(machine_name, {})
+		for error_code, s_time in zip(df['ErrCode'], df['StartTime']):
+		    if s_time >= min_time and s_time < now_time:
+		        for d_c in danger_code:
+		            if d_c not in danger_count:
+						danger_count[machine_name].setdefault(d_c, [])		        	
+		            if d_c in error_code:
+						stf_time = s_time.strftime("%Y/%m/%d %H:%M:%S")
+						danger_count[machine_name][d_c].append(stf_time)		                
+
+	return danger_count
+
 if __name__ == '__main__':
 	# error_code_statistic()
-	lighter_statistic()
+	find_danger_code()
