@@ -132,12 +132,24 @@ def get_danger_error_code():
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
+@app.route('/api/get_health_index', methods=['GET'])
+def health_index():
+    hr = {}
+    try:
+        health_index_result = statistic.calculate_health_index()
+        hr.update({'response': 'success', 'data': health_index_result})
+    except Exception as e:
+        print e
+        hr.update({'response': 'error'})
+    return json.dumps(hr)
+
+
 def _some_processing():
     try:
         preprocessing.processing_to_csv()
         # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
-        models.import_error_code_raw_data(db)
-        models.import_error_code_csv(db)
+        # models.import_error_code_raw_data(db)
+        # models.import_error_code_csv(db)
 
     except Exception as e:
         print (e)
