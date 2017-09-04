@@ -110,8 +110,13 @@ iframe {
 }
 
 .blue-block {
-  height: calc(100% - 52px);
   background: #1c478e;
+  padding-bottom: 50px;
+}
+
+.wold-background {
+  background: url(background.jpg);
+  padding: 30px;
 }
 
 .blue-block h1 {
@@ -161,4 +166,108 @@ input[type=file] {
 
 .align-center {
   text-align: center;
+}
+
+.warning-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url(warning.svg);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.warning-img {
+  width: 100%;
+  opacity: 0.6;
+}
+
+.warning-img:hover {
+  width: 200%;
+  transform: translateX(-25%);
+  opacity: 1;
+}
+
+.warning-img:last-of-type {
+  margin-bottom: 20px;
+}
+
+.success-icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url(success.svg) no-repeat center;
+}
+
+.error-icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url(error.svg) no-repeat center;
+}
+
+.table {
+  background: white;
+}
+
+.dashboard-container {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  width: 48%;
+  margin-top: 30px;
+}
+
+.dashboard-container:nth-child(odd) {
+  margin-right: 3%;
+}
+
+.dashboard-block { 
+  background: white;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dashboard-block::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  display: block;
+  background: #f44242;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 9;
+}
+
+.dashboard-block .ping {
+  width: 65%;
+  height: 3px;
+  background: linear-gradient(to right, #f44242 50%, rgba(0, 0, 0, 0) 50%);
+  display: inline-block;
+  position: absolute;
+  bottom: 36px;
+  left: 19%;
+  transition: transform .8s;
+}
+
+.dashboard-container .health-number {
+  position: absolute;
+  right: -24px;
+  top: -18px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #1c478e;
+  color: white;
+  font-size: 34px;
+  padding: 27px 32px;
+}
+
+.dashboard-container .health-info {
+  padding: 30px 20px;
+  background: #1c478e;
+  color: white;
+  font-family: monospace;
 }
