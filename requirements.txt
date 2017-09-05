@@ -6,4 +6,3 @@ openpyxl==2.4.7
 xlrd==1.0.0
 pandas==0.20.1
 numpy==1.13.1
-tensorflow==1.2.1

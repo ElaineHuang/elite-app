@@ -168,8 +168,8 @@ def get_raw_data_filen_name_list(target):
 
 def some_processing():
     try:
-    	print ">>>>?????"
         preprocessing.processing_to_csv()
+        py_mail()
         # LightProcessing.calculate_light()
         # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
         # models.import_error_code_raw_data(db)
@@ -177,3 +177,65 @@ def some_processing():
 
     except Exception as e:
         print (e)
+
+# coding: utf-8
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+ 
+def py_mail():
+	SUBJECT = "SMT產線機台狀況"
+	email_content = '''
+						<head>
+						<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+						<title>html title</title>
+						<style type="text/css" media="screen">
+						table{
+						    background-color: green;
+						    empty-cells:hide;
+						}
+						td.cell{
+						    background-color: white;
+						}
+						</style>
+						</head>
+						<body>
+						<a href="https://tic100-errorcode-unconvincing-predisgrace.iii-cflab.com/">請確認當前機台健康指數!</a>
+						</body>
+	'''
+	# TO = "u9u9www@gmail.com, mavis930600@gmail.com"
+	TO = "Nick.Liu@advantech.com.tw"
+	FROM = "u9u9www@gmail.com"
+	BODY = email_content  
+	# Create message container - the correct MIME type is multipart/alternative here!
+	MESSAGE = MIMEMultipart('alternative')
+	MESSAGE['subject'] = SUBJECT
+	MESSAGE['To'] = TO
+	MESSAGE['From'] = FROM
+	MESSAGE.preamble = """
+	Your mail reader does not support the report format.
+	Please visit us <a href="http://www.mysite.com">online</a>!"""
+
+	# Record the MIME type text/html.
+	HTML_BODY = MIMEText(BODY, 'html')
+
+	# Attach parts into message container.
+	# According to RFC 2046, the last part of a multipart message, in this case
+	# the HTML message, is best and preferred.
+	MESSAGE.attach(HTML_BODY)
+
+	# The actual sending of the e-mail
+	server = smtplib.SMTP('smtp.gmail.com:587')
+
+	# Print debugging output when testing
+	if __name__ == "__main__":
+	    server.set_debuglevel(1)
+
+	# Credentials (if needed) for sending the mail
+	password = "u9u9wwwu9u9www"
+
+	server.starttls()
+	server.login(FROM,password)
+	server.sendmail(FROM, [TO], MESSAGE.as_string())
+	server.quit()
