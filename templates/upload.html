@@ -55,7 +55,10 @@
       </p>
       <img src="static/img/error-code2.jpg" alt="images" class="warning-img">
       <div class="btn-block">
-        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <label class="file">
+          <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          <span class="file-btn">選擇檔案</span>
+        </label>
         <label>請填入機台名稱 (ex: M023)</label>
         <input id="machine" type="text" class="form-control" placeholder="機台名稱" value="" name="machine">
         <hr class="dashed-hr">
@@ -85,7 +88,10 @@
       </p>
       <img src="static/img/light2.jpg" alt="images" class="warning-img">
       <div class="btn-block">
-        <input class="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <label class="file">
+          <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          <span class="file-btn">選擇檔案</span>
+        </label>
         <button type="submit">Send</button>        
       </div>
       {% if response_light %}

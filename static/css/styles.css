@@ -140,9 +140,32 @@ iframe {
   margin: 0 0 20px;
 }
 
-input[type=file] {
+.file {
+  position: relative;
+  height: 40px;
+  padding: 12px 0 12px 40px;
+  margin-bottom: 20px;
+}
+
+.file .file-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.file .file-btn:hover {
+  border: 1px solid #15aed8;
+}
+
+.file input[type=file] {
   display: inline-block;
-  height: 45px;
+  outline: none;
 }
 
 .file + button {
