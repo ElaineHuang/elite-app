@@ -167,7 +167,6 @@ def calculate_health_index():
 		df = pd.read_csv(f)
 		for index in df['now_status_predict']:
 			if not np.isnan(index):
-				print index
 				if float(index) > 1:
 					index = 1
 				health_index[machine_name] = math.floor(float(index)*100)

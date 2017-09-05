@@ -2,6 +2,7 @@
 from flask import Flask
 from pymongo import MongoClient
 
+from analysis import preprocessing, statistic, LightProcessing
 import csv
 import json
 import os
@@ -140,8 +141,8 @@ def get_and_save_new_raw_files(filename, machine=None):
 		#取最新的檔案當作更新黨
 		fileName = files_list[-1].split('/')[-1].split('.')[0]
 		#開啟檔案並寫入
-		writer_file = pd.ExcelWriter(useful_data_path + fileName +'.xlsx')			
-		df.to_excel(writer_file, sheet)				
+		writer_file = pd.ExcelWriter(raw_data_path + fileName +'.xlsx')			
+		df.to_excel(writer_file, sheet, index=False)			
 		writer_file.save()			
 
 		#刪除舊的機台資訊xlsx csv擋
@@ -152,6 +153,7 @@ def get_and_save_new_raw_files(filename, machine=None):
 
 
 	except Exception as e:
+		print e
 		raise e
 
 def get_raw_data_filen_name_list(target):
@@ -164,4 +166,14 @@ def get_raw_data_filen_name_list(target):
 
 	return files
 
+def some_processing():
+    try:
+    	print ">>>>?????"
+        preprocessing.processing_to_csv()
+        # LightProcessing.calculate_light()
+        # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
+        # models.import_error_code_raw_data(db)
+        # models.import_error_code_csv(db)
 
+    except Exception as e:
+        print (e)
