@@ -5,6 +5,8 @@ import glob
 import copy
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+import math
+import numpy as np
 
 def error_code_statistic():
 	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
@@ -151,6 +153,25 @@ def find_danger_code():
 						danger_count[machine_name][d_c].append(stf_time)		                
 
 	return danger_count
+
+def calculate_health_index():
+	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/train_result_data/')
+	files_list = sorted(glob.glob(useful_data_path + "*.csv"))
+	files = [f for f in files_list if os.path.isfile(os.path.join(useful_data_path, f))]
+	health_index = {}
+
+	for f in files:
+		machine_name = os.path.splitext(f)[0].split('/')[-1].split('_')[0]
+		if not machine_name in health_index:
+			health_index.setdefault(machine_name, 0)
+		df = pd.read_csv(f)
+		for index in df['now_status_predict']:
+			if not np.isnan(index):
+				if float(index) > 1:
+					index = 1
+				health_index[machine_name] = math.floor(float(index)*100)
+
+	return health_index
 
 if __name__ == '__main__':
 	# error_code_statistic()

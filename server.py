@@ -3,9 +3,8 @@ from flask import Flask, render_template, request, jsonify
 import os
 import json
 from models import models
-from analysis import preprocessing
+from analysis import preprocessing, statistic, LightProcessing
 from datetime import datetime
-from analysis import statistic
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -49,6 +48,7 @@ def upload():
         destination = "/".join([target, filename])
         file.save(destination)
         models.get_and_save_new_raw_files(filename, machine)
+        models.some_processing()
         hr.update({'response': 'success',
                     'files' : models.get_raw_data_filen_name_list(target)
                     })
@@ -132,17 +132,18 @@ def get_danger_error_code():
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
-def _some_processing():
+@app.route('/api/get_health_index', methods=['GET'])
+def health_index():
+    hr = {}
     try:
-        preprocessing.processing_to_csv()
-        # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
-        models.import_error_code_raw_data(db)
-        models.import_error_code_csv(db)
-
+        health_index_result = statistic.calculate_health_index()
+        hr.update({'response': 'success', 'data': health_index_result})
     except Exception as e:
-        print (e)
+        print e
+        hr.update({'response': 'error'})
+    return json.dumps(hr)
+
 
 if __name__ == '__main__':
-    _some_processing()
     app.run(host='0.0.0.0', port=port, debug=True)
     

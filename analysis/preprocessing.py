@@ -1,16 +1,14 @@
 #-*-coding:utf-8 -*-
 import os
+import glob
 import openpyxl
 import operator
+import datetime
 """
 SMT production line
 data preprocessing
 """
-SpecList = ['E620002L', 'E620002R', 'E620003L', 'E620003R', 'E551010L', 'E551010R']
-raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data')
-useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data')
-files = [f for f in os.listdir(raw_data_path) if os.path.isfile(os.path.join(raw_data_path, f))]
-print files
+
 def sort_table(table, cols):
     """ sort a table by multiple columns
         table: a list of lists (or tuple of tuples) where each inner list 
@@ -24,10 +22,15 @@ def sort_table(table, cols):
 
 
 def processing_to_csv():
-
+	SpecList = ['E620002L', 'E620002R', 'E620003L', 'E620003R', 'E551010L', 'E551010R']
+	raw_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/raw_data/')
+	useful_data_path = os.path.join(os.path.abspath(os.path.dirname('data')), 'data/useful_data/')
+	files_list = sorted(glob.glob(raw_data_path + "*.xlsx"))
+	files = [f for f in files_list if os.path.isfile(os.path.join(raw_data_path, f))]
+	print files
 	for f in files:
-		fileName = os.path.splitext(f)[0]
-		ErrRec = open(useful_data_path + '/' + fileName+"_file.csv","w")
+		fileName = os.path.splitext(f)[0].split('/')[-1]
+		ErrRec = open(useful_data_path + fileName+"_file.csv","w")
 		print ("-----------processing" + fileName + "_file------------")
 		ErrRec.write("StartTime,ErrCode,Repetition\n")
 		unsortedTable = []
@@ -44,7 +47,11 @@ def processing_to_csv():
 		standardTime = sortedTable[0][0]
 		TimeDiffTable.append([0,sortedTable[0][1]])
 		for row in range(1,len(sortedTable)):
-			TimeDiffTable.append([int((sortedTable[row][0]-standardTime).total_seconds()),sortedTable[row][1]])
+			if not isinstance(sortedTable[row][0], datetime.datetime):
+				time_cc = (datetime.datetime.fromtimestamp(sortedTable[row][0]/1000) - datetime.datetime.fromtimestamp(standardTime/1000)).total_seconds()
+			else:
+				time_cc = (sortedTable[row][0] - standardTime).total_seconds()
+			TimeDiffTable.append([time_cc,sortedTable[row][1]])
 		
 		index = 0
 		for row in TimeDiffTable:
@@ -83,11 +90,15 @@ def processing_to_csv():
 			if baseerror == '0':
 				index += 1;
 				continue
-			line = [sortedTable[index][0].strftime("%Y/%m/%d %H:%M:%S"), baseerror, str(row[0])]
+			if not isinstance(sortedTable[index][0], datetime.datetime):
+				time_rd = datetime.datetime.fromtimestamp(sortedTable[index][0]/1000)
+			else:
+				time_rd = sortedTable[index][0]
+			line = [time_rd.strftime("%Y/%m/%d %H:%M:%S"), baseerror, str(row[0])]
 			ErrRec.write(','.join(line)+"\n")
 			index += 1;
 		ErrRec.close()
-		print ("==============done" + fileName + "_file===========")
+		print ("============== done" + fileName + "_file ===========")
 
 def processing_to_db(db, collect_name):
 
