@@ -34,13 +34,13 @@ $(document).ready(() => {
     const data = result.data;
 
     $("#M023-health").html(data.M023 || 73.0);
-    $("#M024-health").html(data.M024 || 88.0);
-    $("#M025-health").html(data.M025 || 77.0);
-    $("#M026-health").html(data.M026 || 17);
+    $("#M024-health").html(data.M024 || 15.0);
+    $("#M025-health").html(data.M025 || 23.0);
+    $("#M026-health").html(data.M026 || 68);
     
     $('#M023-ping').css('transform', 'rotate(' + convertDeg(data.M023 || 73.0) +')');
-    $('#M024-ping').css('transform', 'rotate(' + convertDeg(data.M024 || 88.0) +')');
-    $('#M025-ping').css('transform', 'rotate(' + convertDeg(data.M025 || 77.0) +')');
-    $('#M026-ping').css('transform', 'rotate(' + convertDeg(data.M026 || 17.0) +')');
+    $('#M024-ping').css('transform', 'rotate(' + convertDeg(data.M024 || 15.0) +')');
+    $('#M025-ping').css('transform', 'rotate(' + convertDeg(data.M025 || 23.0) +')');
+    $('#M026-ping').css('transform', 'rotate(' + convertDeg(data.M026 || 68.0) +')');
   });
 });
