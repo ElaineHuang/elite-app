@@ -1,4 +1,5 @@
 const GET_DANDGER_ERROR_CODE = '/api/get_danger_error_code';
+const GET_HEALTH_INDEX = '/api/get_health_index';
 
 const convertDeg = (number) => {
   return 180 * number / 100 + 'deg';
@@ -29,13 +30,17 @@ $(document).ready(() => {
     }
   });
 
-  $("#M023-health").html("25");
-  $("#M024-health").html("88");
-  $("#M025-health").html("77");
-  $("#M026-health").html("17");
+  callApi(GET_HEALTH_INDEX, 'GET', null, (result) => {
+    const data = result.data;
 
-  $('#M023-ping').css('transform', 'rotate(' + convertDeg(25) +')');
-  $('#M024-ping').css('transform', 'rotate(' + convertDeg(88) +')');
-  $('#M025-ping').css('transform', 'rotate(' + convertDeg(77) +')');
-  $('#M026-ping').css('transform', 'rotate(' + convertDeg(17) +')');
+    $("#M023-health").html(data.M023 || 73.0);
+    $("#M024-health").html(data.M024 || 88.0);
+    $("#M025-health").html(data.M025 || 77.0);
+    $("#M026-health").html(data.M026 || 17);
+    
+    $('#M023-ping').css('transform', 'rotate(' + convertDeg(data.M023 || 73.0) +')');
+    $('#M024-ping').css('transform', 'rotate(' + convertDeg(data.M024 || 88.0) +')');
+    $('#M025-ping').css('transform', 'rotate(' + convertDeg(data.M025 || 77.0) +')');
+    $('#M026-ping').css('transform', 'rotate(' + convertDeg(data.M026 || 17.0) +')');
+  });
 });
