@@ -3,7 +3,8 @@ applications:
 - name: tic100-ErrorCode
   random-route: true      # please do NOT remove this attribute
   instances: 1            # default: 1
-  memory: 128M            # default: 2G
-  disk_quota: 512M        # default: 2G
+  memory: 2G            # default: 2G
+  disk_quota: 2G        # default: 2G
   services:
   - mongodb
+  buildpack: https://github.com/cloudfoundry/python-buildpack.git

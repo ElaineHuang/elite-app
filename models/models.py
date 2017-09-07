@@ -1,8 +1,8 @@
 #-*-coding:utf-8 -*-
 from flask import Flask
 from pymongo import MongoClient
-
-from analysis import preprocessing, statistic, LightProcessing
+from analysis import preprocessing, statistic, LightProcessing, merge_train_data
+from machine_learning import simulation_restore
 import csv
 import json
 import os
@@ -170,6 +170,9 @@ def some_processing():
     try:
         preprocessing.processing_to_csv()
         py_mail()
+        merge_train_data.merge_train_data_d()
+        simulation_restore.simulation_restore_m()
+
         # LightProcessing.calculate_light()
         # preprocessing.processing_to_db(db, 'errorCodeRawDataTable')
         # models.import_error_code_raw_data(db)
@@ -204,8 +207,8 @@ def py_mail():
 						<a href="https://tic100-errorcode-unconvincing-predisgrace.iii-cflab.com/">請確認當前機台健康指數!</a>
 						</body>
 	'''
-	# TO = "u9u9www@gmail.com, mavis930600@gmail.com"
-	TO = "Nick.Liu@advantech.com.tw"
+	TO = "u9u9www@gmail.com, mavis930600@gmail.com"
+	# TO = "Nick.Liu@advantech.com.tw"
 	FROM = "u9u9www@gmail.com"
 	BODY = email_content  
 	# Create message container - the correct MIME type is multipart/alternative here!
