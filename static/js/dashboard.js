@@ -36,12 +36,8 @@ $(document).ready(() => {
     $("#M023-health").html(data.M023 || 73.0);
     $("#M024-health").html(data.M024 || 15.0);
     $("#M025-health").html(data.M025 || 23.0);
-<<<<<<< Updated upstream
-    $("#M026-health").html(data.M026 || 68);
-=======
     $("#M026-health").html(data.M026 || 68.0);
->>>>>>> Stashed changes
-    
+
     $('#M023-ping').css('transform', 'rotate(' + convertDeg(data.M023 || 73.0) +')');
     $('#M024-ping').css('transform', 'rotate(' + convertDeg(data.M024 || 15.0) +')');
     $('#M025-ping').css('transform', 'rotate(' + convertDeg(data.M025 || 23.0) +')');

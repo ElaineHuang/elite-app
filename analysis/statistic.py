@@ -151,7 +151,7 @@ def find_danger_code():
 		            if d_c in error_code:
 						stf_time = s_time.strftime("%Y/%m/%d %H:%M:%S")
 						danger_count[machine_name][d_c].append(stf_time)		                
-
+	# danger_count = fake_danger_code(danger_count)
 	return danger_count
 
 def calculate_health_index():
@@ -173,6 +173,15 @@ def calculate_health_index():
 
 	return health_index
 
+def fake_danger_code(danger_count):
+	danger_count['M023']['E041205'].append(datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
+	danger_count['M026']['W432000'].append((datetime.now()-relativedelta(days=5, hours=3, minute=40)).strftime("%Y/%m/%d %H:%M:%S"))
+	danger_count['M026']['W362000'].append((datetime.now()-relativedelta(days=3)).strftime("%Y/%m/%d %H:%M:%S"))
+	danger_count['M026']['W502001'].append((datetime.now()-relativedelta(days=3, hours=7, minute=20)).strftime("%Y/%m/%d %H:%M:%S"))
+	danger_count['M024']['W940100'].append((datetime.now()-relativedelta(days=5, hours=3, minute=40)).strftime("%Y/%m/%d %H:%M:%S"))
+	danger_count['M023']['W432000'].append((datetime.now()-relativedelta(days=1, hours=2, minute=50)).strftime("%Y/%m/%d %H:%M:%S"))
+
+	return danger_count
 if __name__ == '__main__':
 	# error_code_statistic()
 	find_danger_code()

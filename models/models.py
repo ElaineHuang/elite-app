@@ -99,7 +99,7 @@ def get_new_record(db):
 
 def save_form(db, data):
 	collect = db['actionCodeList']
-	data['event-date'] = datetime.strptime(data['event-date'], "%Y/%m/%d %H")
+	data['event-date'] = datetime.strptime(data['event-date'], "%Y/%m/%d %H:%M")
 	data.update({
 		'update_time': datetime.now()
 	})

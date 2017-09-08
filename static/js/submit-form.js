@@ -41,10 +41,10 @@ function standardObject(orginialArray) {
 
 if ($('#event-date')[0]) {
   $('#event-date').fdatepicker({
-    format: 'yyyy/mm/dd hh:00',
+    format: 'yyyy/mm/dd hh:ii',
     disableDblClickSelection: true,
     pickTime: 1,
-    minView: 1,
+    // minView: 2,
     leftArrow:'<<',
     rightArrow:'>>'
   });

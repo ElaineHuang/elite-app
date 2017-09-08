@@ -129,6 +129,7 @@ def get_danger_error_code():
         danger_error_code = statistic.find_danger_code()
         hr.update({'response': 'success', 'data': danger_error_code})
     except Exception as e:
+        print e
         hr.update({'response': 'error'})
     return json.dumps(hr)
 
